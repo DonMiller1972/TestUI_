@@ -151,7 +151,7 @@ public class finalTestNG {
         }
         startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() - startTime < 5*1000) {
-            //   System.out.print(startTime - System.currentTimeMillis());
+
         }
         WebElement employeeListButton = driver
                 .findElement(By.xpath("//div[1]/div[1]/header/div[2]/nav/ul/li[2]"));
