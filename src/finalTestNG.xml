@@ -3,7 +3,7 @@
 <suite name="Final test UI">
     <test name="Final test UI">
         <classes>
-            <class name="finalTestNG"></class>
+            <class name="finalTestNG"/>
         </classes>
     </test>
 </suite>
