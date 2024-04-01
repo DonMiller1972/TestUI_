@@ -221,7 +221,7 @@ public class finalTestNG {
                     .xpath("//div[2]/div/div[2]/div/div[2]/div[1]"));
 
             Wait<WebDriver> wait = new FluentWait(driver).withTimeout(Duration.ofSeconds(10)).
-                    pollingEvery(Duration.ofMillis(1));
+                    pollingEvery(Duration.ofMillis(500));
             wait.until(l -> {
                 employeeNameFirst.click();
                 return true;
@@ -244,6 +244,12 @@ public class finalTestNG {
         }
 
         try{
+            Wait<WebDriver> wait = new FluentWait(driver).withTimeout(Duration.ofSeconds(5)).
+                    pollingEvery(Duration.ofMillis(300));
+            wait.until(l -> {
+                driver.findElement(By.xpath("//div[text() ='Abujabar']")).isEnabled();
+                return true;
+            });
             WebElement employeeIdBase = driver.findElement(By.xpath("//div[text() ='Abujabar']"));
             Assert.assertEquals(userName, employeeIdBase.getText(),"Record not present");
             System.out.println("Employee with UserNAme " + userName+ " is created");
