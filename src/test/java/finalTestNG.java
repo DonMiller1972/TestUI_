@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 
@@ -26,18 +27,13 @@ public class finalTestNG {
     @BeforeClass
     static void initWebDriver() {
 
-       WebDriverManager.chromedriver().clearDriverCache().setup();
-       WebDriverManager.chromedriver().clearResolutionCache().setup();
-        WebDriverManager.chromedriver().setup();
 
+        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
-      //  chromeOptions.addArguments("--incognito");
-        chromeOptions.addArguments("--download-default-directory=C:\\Users\\DonK\\IdeaProjects\\HomeWorkLesson9");
+        //chromeOptions.addArguments("--download-default-directory=C:\\Users\\DonK\\IdeaProjects\\HomeWorkLesson9");
         driver = new ChromeDriver(chromeOptions);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get(URL);
     }
 
@@ -59,7 +55,7 @@ public class finalTestNG {
         String tittle = "New Super Account Assistent";
         String description = "Don't worry, it so easy";
         String note = "it's a terrible job but you'll get experience and maybe money ";
-        String fileName = "C:\\Users\\DonK\\IdeaProjects\\HomeWorkLesson9\\Книга1.xlsx";
+        String fileName = Paths.get("./Книга1.xlsx").toFile().getAbsolutePath();
         String xputTittle = "//*[text()="+"'New Super Account Assistent'"+"]";
 
         WebElement adminButton = driver.findElement(By.xpath("//ul/li[1]/a"));
@@ -78,19 +74,12 @@ public class finalTestNG {
             addJobTittlesButton.click();
             WebElement jobTittleInput = driver.findElement(By.xpath("//div[1]/div/div[2]/input"));
             jobTittleInput.sendKeys(tittle);
-            System.out.println("Length of Tittle equal " + tittle.length() + ", max length - 100 simbols and can't be empty");
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             WebElement jobDescriptionField = driver.findElement(By.xpath("//div[2]/div/div[2]/textarea"));
             jobDescriptionField.sendKeys(description);
-            System.out.println("Length of description equal " + description.length() + ", max length - 400 simbols");
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             WebElement jobUpLoadFileField = driver.findElement(By.xpath("//div[3]/div/div[2]/input"));
             jobUpLoadFileField.sendKeys(fileName);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             WebElement jobAddNoteField = driver.findElement(By.xpath("//form/div[4]/div/div[2]/textarea"));
             jobAddNoteField.sendKeys(note);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-            System.out.println("Length of note equal " + note.length() + ", max length - 400 simbols");
             WebElement jobSaveButton = driver.findElement(By.xpath("//form/div[5]/button[2]"));
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(2)).
                     pollingEvery(Duration.ofMillis(300));
@@ -98,8 +87,14 @@ public class finalTestNG {
                 jobSaveButton.click();
                 return true;
             });
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
+        WebElement title = driver.findElement(By.xpath("//div[text() ='New Super Account Assistent']"));
+        WebElement descript = driver.findElement(By.xpath("//div[text() ='New Super Account Assistent']/../../div[3]/div/span"));
+        //div[text() ='New Super Account Assistent']/../../div[3]/div/span
+        System.out.println("Title:" + title.getText());
+        System.out.println("Desription: " +descript.getText());
+        Assert.assertEquals(tittle, title.getText(),tittle + " not found ");
+        Assert.assertEquals(description, descript.getText(),tittle + " not found ");
         new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(2))
                 .pollingEvery(Duration.ofMillis(300))
@@ -123,15 +118,17 @@ public class finalTestNG {
 
          String lastName = "Laster";
 
-         String employeeId = "0500";
+         String employeeId = "0913";
+
          long  startTime;
 
         WebElement pimButton = driver.findElement(By.xpath("//ul/li[2]/a"));
         pimButton.click();
         List<WebElement> listOfElements = driver
-                .findElements(By.xpath("//*[text()='First Mid']"));
+                .findElements(By.xpath("//*[text()='0913']"));
+
         if(listOfElements.size()>0){
-            WebElement userElement = driver.findElement(By.xpath("//*[text()='First Mid']"));
+            WebElement userElement = driver.findElement(By.xpath("//*[text()='0913']"));
             System.out.println("Employee Id :" + employeeId + " is present. Skip ");
         }else {
             WebElement addEmployeeButton = driver.findElement(By.xpath("//div[2]/nav/ul/li[3]/a"));
@@ -146,37 +143,43 @@ public class finalTestNG {
             employeeIdField.sendKeys(Keys.CONTROL + "a");
             employeeIdField.sendKeys(Keys.DELETE);
             employeeIdField.sendKeys(employeeId);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             WebElement saveEmployeeButton = driver
                     .findElement(By.xpath("//div[2]/div/div/form/div[2]/button[2]"));
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(5)).
                     pollingEvery(Duration.ofMillis(300));
             wait.until(l -> {
-                        saveEmployeeButton.click();
-                        return true;
+                saveEmployeeButton.click();
+                return true;
             });
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
-        }
-        //TODO
-       startTime = System.currentTimeMillis();
-       while (System.currentTimeMillis() - startTime < 5*1000) { }
 
-      //
+          startTime = System.currentTimeMillis();
+          while (System.currentTimeMillis() - startTime < 1*1000) {}
+        }
+
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(6))
+                .pollingEvery(Duration.ofSeconds(2))
+                .until(driver ->
+                        driver.findElement(By.xpath("//div[1]/div[1]/header/div[2]/nav/ul/li[2]")).isDisplayed());
 
         WebElement employeeListButton = driver
                 .findElement(By.xpath("//div[1]/div[1]/header/div[2]/nav/ul/li[2]"));
         employeeListButton.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
+        WebElement id = driver.findElement(By.xpath("//div[text() ='0913']"));
+        WebElement firstAndMiddleName = driver.findElement(By.xpath("//div[text() ='0913']/../../div[3]/div"));
+        Assert.assertEquals(employeeId, id.getText(),"Not found");
+        String firstNameMiddleName = firstName + " " + middleName;
+        Assert.assertEquals(firstNameMiddleName, firstAndMiddleName.getText(),"Not found");
         new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(7))
                 .pollingEvery(Duration.ofMillis(300))
                 .until(d -> {
-                    driver.findElement(By.xpath("//div[text() ='0500']")).isEnabled();
+                    driver.findElement(By.xpath("//div[text() ='0913']")).isEnabled();
                     return true;
                 });
         Assert.assertEquals(employeeId, driver
-                .findElement(By.xpath("//div[text() ='0500']"))
+                .findElement(By.xpath("//div[text() ='0913']"))
                 .getText(), "Record not present");
     }
 
@@ -186,7 +189,7 @@ public class finalTestNG {
 
         String userName  = "Abujabar";
         String userRole = "Admin";
-        String employeeNameJob = "First Mid Laster";
+        String employeeNameJob = "First Laster";
         String status = "Enabled";
         String paswrd = "123456789Qz";
         long startTime;
@@ -215,37 +218,35 @@ public class finalTestNG {
                 adminRole.click();
             WebElement statusUserField = driver.findElement(By
                     .xpath("//div/div[3]/div/div[2]/div/div/div[1]"));
-
             statusUserField.click();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
-           // startTime = System.currentTimeMillis();
-           // while (System.currentTimeMillis() - startTime < 1*1000) {}
-                //   System.out.print(startTime - System.currentTimeMillis());
-
+            startTime = System.currentTimeMillis();
+            while (System.currentTimeMillis() - startTime < 1*1000) {}
 
             WebElement statusEnabled = driver.findElement(By
                     .xpath("//div[2]/div/div[2]/div[2]"));
             statusEnabled.click();
             WebElement employeeNameField = driver.findElement(By
                     .xpath("//div[2]/div/div[2]/div/div/input"));
-            employeeNameField.sendKeys("First Mid Laster");
-            //TODO
-            startTime = System.currentTimeMillis();
-            //while (System.currentTimeMillis() - startTime < 5*1000) {}
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
+            employeeNameField.sendKeys("First Laster");
 
+            startTime = System.currentTimeMillis();
+            while (System.currentTimeMillis() - startTime < 2*1000) {}
+
+            new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(15))
+                    .pollingEvery(Duration.ofSeconds(5000))
+                    .until(driver ->
+                            driver.findElement(By.xpath("//div[2]/div/div[2]/div/div[2]/div[1]")).isDisplayed());
             WebElement employeeNameFirst = driver.findElement(By
                     .xpath("//div[2]/div/div[2]/div/div[2]/div[1]"));
-            System.out.println("Прошло" + (startTime - System.currentTimeMillis())/1000);
+
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10)).
-                    pollingEvery(Duration.ofMillis(500));
+                    pollingEvery(Duration.ofMillis(1000));
             wait.until(l -> {
                 employeeNameFirst.click();
                 return true;
             });
-            System.out.println("Прошло" + (startTime - System.currentTimeMillis())/1000);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
             WebElement userNameField = driver.findElement(By
                     .xpath("//div[4]/div/div[2]/input"));
             userNameField.sendKeys( "Abujabar");
@@ -258,12 +259,25 @@ public class finalTestNG {
             WebElement saveButtonAddForm = driver.findElement(By
                     .xpath("//div[3]/button[2]"));
             saveButtonAddForm.click();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         }
 
+        WebElement name = driver.findElement(By.xpath("//div[text() ='Abujabar']"));
+        WebElement useRoleB = driver.findElement(By
+                .xpath("//div[text() ='Abujabar']/../../div[3]/div"));
+        WebElement employeeNameB = driver.findElement(By
+                .xpath("//div[text() ='Abujabar']/../../div[4]/div"));
+        WebElement statusJobB = driver.findElement(By
+                .xpath("//div[text() ='Abujabar']/../../div[5]/div"));
+        System.out.println("Name:" + name.getText() + " role: " + useRoleB.getText()+" employee name: "+ employeeNameB.getText()+" status job: " +statusJobB.getText());
+        Assert.assertEquals(userName,name.getText(), "\"Record not present\"");
+        Assert.assertEquals(userRole,useRoleB.getText(), "\"Record not present\"");
+        Assert.assertEquals(employeeNameJob,employeeNameB.getText(), "\"Record not present\"");
+        Assert.assertEquals(status,statusJobB.getText(), "\"Record not present\"");
+
         new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(300))
+                .withTimeout(Duration.ofSeconds(15))
+                .pollingEvery(Duration.ofMillis(2000))
                 .until(d -> {
                     driver.findElement(By.xpath("//div[text() ='Abujabar']")).isEnabled();
                     return true;
