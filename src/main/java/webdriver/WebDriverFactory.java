@@ -13,19 +13,20 @@ public class WebDriverFactory {
 
 
 
-    private static String URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+   // private static String URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
     private WebDriverFactory(){
 
     }
-    public static WebDriver getWebDriver(){
+    public static WebDriver getWebDriver(String URL){
         if (driver == null){
-            initializeWebDriver();
+
+            initializeWebDriver(URL);
         }
         return driver;
     }
 
-    private static void initializeWebDriver(){
+    private static void initializeWebDriver(String URL){
         WebDriverManager.chromedriver().clearDriverCache().setup();
         WebDriverManager.chromedriver().clearResolutionCache().setup();
         WebDriverManager.chromedriver().setup();
@@ -33,7 +34,7 @@ public class WebDriverFactory {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
-        chromeOptions.addArguments("--download-default-directory=C:\\Users\\DonK\\IdeaProjects\\HomeWorkLesson9");
+      //  chromeOptions.addArguments("--download-default-directory=C:\\Users\\DonK\\IdeaProjects\\ProjecTesttUI");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 

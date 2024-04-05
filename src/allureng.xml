@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="YourTestSuite">
+    <listeners>
+        <listener class-name="Listener.AllureCustomListener" />
+    </listeners>
+    <!-- Test classes go here -->X
+    <test name="YourTest">
+        <classes>
+            <class name="finalTestNG" />
+        </classes>
+    </test>
+</suite>

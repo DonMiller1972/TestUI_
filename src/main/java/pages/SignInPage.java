@@ -26,9 +26,9 @@ public class SignInPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void loginToSite(String login, String password){
-        userIDField.sendKeys(login);
-        passwordField.sendKeys(password);
+    public static void loginToSite(SignInPageParametersObg signInPageParametersObg){
+        userIDField.sendKeys(signInPageParametersObg.getUserLogin());
+        passwordField.sendKeys(signInPageParametersObg.getUserPassword());
         loginButton.click();
 
 

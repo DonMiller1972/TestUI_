@@ -1,0 +1,6 @@
+org\company\MainApp.class
+webdriver\WebDriverFactory.class
+pages\PimPage.class
+pages\AdminPage.class
+Listener\AllureCustomListener.class
+pages\SignInPage.class

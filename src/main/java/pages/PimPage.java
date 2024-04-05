@@ -8,31 +8,32 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.security.Key;
 import java.time.Duration;
+import java.util.List;
 
 public class PimPage {
-    private WebDriver driver;
-    @FindBy(xpath = "//ul/li[2]/a")
-    private WebElement pimButton;
-    @FindBy(xpath = "//div[2]/nav/ul/li[3]/a")
-    private WebElement addEmployeeButton;
+    static private  WebDriver driver;
+    @FindBy(xpath = "//span[text()='PIM'] ")
+    static private WebElement pimButton;
+    @FindBy(xpath = "//button[text()=\" Add \"] ")
+    static private WebElement addEmployeeButton;
 
-    @FindBy(xpath = "//div[2]/div[1]/div[2]/input")
-    private WebElement firstNameField;
+    @FindBy(xpath = "//input[@name=\"firstName\"]")
+    static private WebElement firstNameField;
 
-    @FindBy(xpath = "//div[2]/div[2]/div[2]/input")
-    private WebElement middleNameField;
+    @FindBy(xpath = "//input[@name=\"middleName\"]")
+    static private WebElement middleNameField;
 
-    @FindBy(xpath = "//div[2]/div[3]/div[2]/input")
-    private WebElement lastNameField;
+    @FindBy(xpath = "//input[@name=\"lastName\"]")
+    static private WebElement lastNameField;
 
-    @FindBy(xpath = "//div[2]/div/div/div[2]/input")
-    private WebElement employeeIdField;
+    @FindBy(xpath = "//label[text()='Employee Id']/../..//div/input")
+    static private WebElement employeeIdField;
 
-    @FindBy(xpath = "//div[2]/div/div/form/div[2]/button[2]")
-    private WebElement saveEmployeeButton;
+    @FindBy(xpath = "//button[text()=\" Save \"]")
+    static private WebElement saveEmployeeButton;
 
-    @FindBy(xpath = "//div[2]/div/div/form/div[2]/button[1]")
-    private WebElement cancelEmployeeButton;
+    @FindBy(xpath = "//button[text()=\" Cancel \"]")
+    static private WebElement cancelEmployeeButton;
 
     long  startTime;
 
@@ -47,35 +48,47 @@ public class PimPage {
     public PimPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver, this);
+
     }
 
-    public void addEmployee(String firstName, String middleName, String lastName, String employeeId, String xput){
+    public static void addEmployee(EmployeeParametersObj employeeParametersObj) {
+
+        String xputUserName = "//*[text()='First Mid']";
+        String firstName = "First";
+        String middleName = "Mid";
+        String lastName = "Laster";
+        String employeeId = "0913";
+
+        long startTime;
+
         pimButton.click();
-        try {
-            System.out.println(xput);
-            WebElement userElement = driver.findElement(By.xpath(xput));
-            System.out.println("Employee Id :" + employeeId + " is present. Skip ");
-        }catch (NoSuchElementException e){
+
+        List<WebElement> listOfElements = driver
+                .findElements(By.xpath(employeeParametersObj.getXputUserName()));
+
+        if (listOfElements.size() > 0) {
+            WebElement userElement = driver.findElement(By.xpath(employeeParametersObj.getXputUserName()));
+            System.out.println("Employee Id :" + employeeParametersObj.getEmployeeId() + " is present. Skip ");
+        } else {
             addEmployeeButton.click();
-            firstNameField.sendKeys(firstName);
-            middleNameField.sendKeys(middleName);
-            lastNameField.sendKeys(lastName);
+            firstNameField.sendKeys(employeeParametersObj.getFirstName());
+            middleNameField.sendKeys(employeeParametersObj.getMiddleName());
+            lastNameField.sendKeys(employeeParametersObj.getLastName());
+            //employeeIdField.sendKeys(Keys.CONTROL + "a");
+            //employeeIdField.sendKeys(Keys.DELETE);
             for (int i = 0; i < 5; i++) {
                 employeeIdField.sendKeys(Keys.BACK_SPACE);
             }
-            employeeIdField.sendKeys(employeeId);
-
-            waitFewSeconds1(4);
-            saveEmployeeButton.click();
-            waitFewSeconds1(4);
+            employeeIdField.sendKeys(employeeParametersObj.getEmployeeId());
+            Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(5)).
+                    pollingEvery(Duration.ofMillis(300));
+            wait.until(l -> {
+                saveEmployeeButton.click();
+                return true;
+            });
 
 
         }
-        String a = "Record : " + firstName + " " + lastName+ " "+ employeeId +" ";
-        AdminPage.recordIsPresent(driver, xput, a+"is present",a +" is not present");
-
-
 
     }
-
 }
