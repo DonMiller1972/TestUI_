@@ -107,9 +107,6 @@ public class AdminPage {
     @FindBy(xpath ="//div[3]/button[2]")
     private static WebElement saveButtonAddForm;
 
-   // @FindBy(xpath = "//*[text()='Abujabar']")
-   // private static WebElement nameEmployee;
-
     @FindBy(xpath = "//*[text()='First Mid']")
     private static WebElement userName;
     long  startTime;
@@ -118,31 +115,12 @@ public class AdminPage {
     private static String nameEmployee = "//*[text()='Abujabar']";
     public void waitFewSeconds(int wait){
         startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime < wait*1000) {
-            //   System.out.print(startTime - System.currentTimeMillis());*/
-        }
+        while (System.currentTimeMillis() - startTime < wait*1000) { }
 
     }
     public AdminPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-
-    public static void recordIsPresent(WebDriver driver, String field1, String field2, String field3 ){
-
-        try{
-
-            WebElement userElement = driver.findElement(By.xpath(field1));
-            System.out.println(field2);
-        }catch (NoSuchElementException e) {
-            System.out.println(field3);
-        }
-        }
-
-
-    public void clickMenuButton(WebElement menu, WebElement subMenu){
-        menu.click();
-        subMenu.click();
     }
 
     public static void addJobTittle(JobTittleParameterObj jobTittleParameterObj){
@@ -207,8 +185,6 @@ public class AdminPage {
             }else{
                 statusDisabled.click();
             }
-            //startTime = System.currentTimeMillis();
-            //while (System.currentTimeMillis() - startTime < 1*1000) {}
 
             employeeNameField.sendKeys(jobEmployeeParametersObj.getEmployeeNameJob());
 
@@ -235,15 +211,5 @@ public class AdminPage {
             saveButtonAddForm.click();
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

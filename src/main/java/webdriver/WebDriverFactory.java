@@ -11,10 +11,6 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverFactory {
     private static WebDriver driver;
 
-
-
-   // private static String URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
-
     private WebDriverFactory(){
 
     }
@@ -34,7 +30,6 @@ public class WebDriverFactory {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
-      //  chromeOptions.addArguments("--download-default-directory=C:\\Users\\DonK\\IdeaProjects\\ProjecTesttUI");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 

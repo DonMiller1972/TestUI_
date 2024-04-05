@@ -39,9 +39,7 @@ public class PimPage {
 
     public void waitFewSeconds1(int wait){
         startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime < wait*1000) {
-            //   System.out.print(startTime - System.currentTimeMillis());
-        }
+        while (System.currentTimeMillis() - startTime < wait*1000) { }
 
     }
 
@@ -74,11 +72,11 @@ public class PimPage {
             firstNameField.sendKeys(employeeParametersObj.getFirstName());
             middleNameField.sendKeys(employeeParametersObj.getMiddleName());
             lastNameField.sendKeys(employeeParametersObj.getLastName());
-            //employeeIdField.sendKeys(Keys.CONTROL + "a");
-            //employeeIdField.sendKeys(Keys.DELETE);
-            for (int i = 0; i < 5; i++) {
-                employeeIdField.sendKeys(Keys.BACK_SPACE);
-            }
+            employeeIdField.sendKeys(Keys.CONTROL + "a");
+            employeeIdField.sendKeys(Keys.DELETE);
+           // for (int i = 0; i < 5; i++) {
+           //     employeeIdField.sendKeys(Keys.BACK_SPACE);
+           // }
             employeeIdField.sendKeys(employeeParametersObj.getEmployeeId());
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(5)).
                     pollingEvery(Duration.ofMillis(300));
