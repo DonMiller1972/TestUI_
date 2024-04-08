@@ -6,7 +6,7 @@
     <!-- Test classes go here -->X
     <test name="YourTest">
         <classes>
-            <class name="finalTestNG" />
+            <class name="TestNgUiFinal" />
         </classes>
     </test>
 </suite>

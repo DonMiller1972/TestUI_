@@ -74,9 +74,7 @@ public class PimPage {
             lastNameField.sendKeys(employeeParametersObj.getLastName());
             employeeIdField.sendKeys(Keys.CONTROL + "a");
             employeeIdField.sendKeys(Keys.DELETE);
-           // for (int i = 0; i < 5; i++) {
-           //     employeeIdField.sendKeys(Keys.BACK_SPACE);
-           // }
+
             employeeIdField.sendKeys(employeeParametersObj.getEmployeeId());
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(5)).
                     pollingEvery(Duration.ofMillis(300));

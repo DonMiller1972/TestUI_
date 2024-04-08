@@ -1,6 +1,10 @@
+pages\SignInPage.class
 org\company\MainApp.class
+pages\JobTittleParameterObj.class
 webdriver\WebDriverFactory.class
+pages\EmployeeParametersObj.class
 pages\PimPage.class
 pages\AdminPage.class
 Listener\AllureCustomListener.class
-pages\SignInPage.class
+pages\JobEmployeeParametersObj.class
+pages\SignInPageParametersObg.class

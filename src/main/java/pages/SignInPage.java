@@ -9,16 +9,16 @@ public class SignInPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath="//form/div[1]/div/div[2]/input")
-    private static WebElement userIDField;
+    @FindBy(xpath="//input[@name='username']")
+    private static  WebElement userIDField;
 
-    @FindBy(xpath="//form/div[2]/div/div[2]/input")
+    @FindBy(xpath="//input[@name='password']")
     private static WebElement passwordField;
 
-    @FindBy(xpath="//form/div[3]/button")
+    @FindBy(xpath="//button[text()=' Login ']")
     private static WebElement loginButton;
 
-    @FindBy(xpath="//ul/li[1]/a")
+    @FindBy(xpath="//span[text()='Admin']")
     private static WebElement adminButton;
 
     public SignInPage(WebDriver driver){

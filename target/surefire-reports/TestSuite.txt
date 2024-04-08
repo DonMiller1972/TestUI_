@@ -1,17 +1,17 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 80.224 s <<< FAILURE! - in TestSuite
-finalTestNG.addAdminJobTitle  Time elapsed: 19.546 s  <<< FAILURE!
-org.openqa.selenium.InvalidArgumentException: 
-invalid argument: 
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 35.884 s <<< FAILURE! - in TestSuite
+TestNgUiFinal.testAddAdminJbTitle  Time elapsed: 15.612 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//span[text()='Job ']"}
   (Session info: chrome=123.0.6312.106)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.11.0', revision: '040bc5406b'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4c85124ba026b3efbbd558afb7393c4e, sendKeysToElement {id=f.3A7626F9E3F8AA74D7FB02CC0660CB5C.d.363C1E821B902490810B8DA1368D9D9E.e.99, value=[Ljava.lang.CharSequence;@1dd74143}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.106, chrome: {chromedriverVersion: 123.0.6312.86 (9b72c47a0536..., userDataDir: C:\Users\DonK\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64927}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64927/devtoo..., se:cdpVersion: 123.0.6312.106, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (4c85124ba026b3efbbd558afb7393c4e)] -> xpath: //div[3]/div/div[2]/input]
-Session ID: 4c85124ba026b3efbbd558afb7393c4e
-	at finalTestNG.addAdminJobTitle(finalTestNG.java:89)
+Command: [5be62893d002b04d475e7a1df4f96409, findElement {using=xpath, value=//span[text()='Job ']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.106, chrome: {chromedriverVersion: 123.0.6312.105 (399174dbe6e..., userDataDir: C:\Users\DonK\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56597}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56597/devtoo..., se:cdpVersion: 123.0.6312.106, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5be62893d002b04d475e7a1df4f96409
+	at TestNgUiFinal.testAddAdminJbTitle(TestNgUiFinal.java:88)
 

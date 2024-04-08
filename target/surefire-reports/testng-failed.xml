@@ -6,14 +6,16 @@
   </listeners>
   <test thread-count="5" name="YourTest(failed)" verbose="0">
     <classes>
-      <class name="finalTestNG">
+      <class name="TestNgUiFinal">
         <methods>
-          <include name="addAdminJobTitle"/>
+          <include name="testAddAdminJbTitle"/>
+          <include name="testAddJobEmploye"/>
           <include name="quitWebDriver"/>
-          <include name="loginToPage"/>
           <include name="initWebDriver"/>
+          <include name="testAddEmployee"/>
+          <include name="testLoginToPage"/>
         </methods>
-      </class> <!-- finalTestNG -->
+      </class> <!-- TestNgUiFinal -->
     </classes>
   </test> <!-- YourTest(failed) -->
 </suite> <!-- Failed suite [YourTestSuite] -->

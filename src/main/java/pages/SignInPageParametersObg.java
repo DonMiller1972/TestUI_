@@ -3,7 +3,7 @@ package pages;
 public class SignInPageParametersObg {
     private static String userLogin;
 
-    private  static  String userPassword;
+    private static String userPassword;
 
     public  String getUserLogin() {
         return userLogin;
@@ -14,7 +14,7 @@ public class SignInPageParametersObg {
         return this;
     }
 
-    public static String getUserPassword() {
+    public  String getUserPassword() {
         return userPassword;
     }
 

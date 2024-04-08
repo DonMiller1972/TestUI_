@@ -63,48 +63,50 @@ public class AdminPage {
 
 
     //JobTittle control
-    @FindBy(xpath = "//div[16]/div/div[2]/div")
+    @FindBy(xpath = "//span[text()='Required']")
     private static WebElement jobTittleControle;
 
-    @FindBy(xpath = "//div/div[2]/div[16]/div/div[3]/div")
+    @FindBy(xpath = "//span[text()='Should not exceed 400 characters']")
     private static WebElement jobDescriptionControle;
 
     //UserRole
-    @FindBy(xpath = "//div[1]/div/div[1]/div/div[2]/div/div/div[1]")
+    @FindBy(xpath = "//div[1][@class='oxd-grid-item oxd-grid-item--gutters']//div[text()='-- Select --']")
     private static WebElement userRoleField;
-    @FindBy(xpath = "//div[2]/div/div[2]/div[2]")
+    @FindBy(xpath = "//div['oxd-select-dropdown --positon-bottom']/span[text()='Admin']")
     private static WebElement adminRole;
 
-    @FindBy(xpath = "//div[2]/div/div[2]/div[3]")
+    @FindBy(xpath = "//div['oxd-select-dropdown --positon-bottom']/span[text()='ESS']")
     private static WebElement essRole;
 
     //Status user
-    @FindBy(xpath = "//div/div[3]/div/div[2]/div/div/div[1]")
+    @FindBy(xpath = "//div[3][@class='oxd-grid-item oxd-grid-item--gutters']//div[text()='-- Select --']")
     private static WebElement statusUserField;
 
-    @FindBy(xpath = "//div[2]/div/div[2]/div[2]")
+    @FindBy(xpath = "//div['oxd-select-dropdown --positon-bottom']/span[text()='Enabled']")
     private static WebElement statusEnabled;
 
-    @FindBy(xpath = "//div[2]/div/div[2]/div[3]")
+    @FindBy(xpath = "//div['oxd-select-dropdown --positon-bottom']/span[text()='Disabled']")
     private static WebElement statusDisabled;
 
-    @FindBy(xpath = "//div[2]/div/div[2]/div/div/input")
+    @FindBy(xpath = "//label[text()='Employee Name']/../..//input")
     private static WebElement employeeNameField;
 
-    @FindBy(xpath = "//div[2]/div/div[2]/div/div[2]/div[1]")
+    @FindBy(xpath = "//div[@role='listbox']/div/span[text()='First Mid Laster']")
     private static WebElement employeeNameFirst;
-    private static String employeeNameFirstS = "//div[2]/div/div[2]/div/div[2]/div[1]";
 
-    @FindBy(xpath ="//div[4]/div/div[2]/input")
+    private static String employeeNameFirstS = "//div[@role='listbox']/div/span[text()='First Mid Laster']";
+
+
+    @FindBy(xpath ="//label[text()='Username']/../..//input")
     private static WebElement userNameField;
 
-    @FindBy(xpath ="//div[1]/div/div[2]/input")
+    @FindBy(xpath ="//label[text()='Password']/../..//input")
     private static WebElement passwordField;
 
-    @FindBy(xpath ="//div[2]/div/div[2]/input")
+    @FindBy(xpath ="//label[text()='Confirm Password']/../..//input")
     private static WebElement confirmPasswordField;
 
-    @FindBy(xpath ="//div[3]/button[2]")
+    @FindBy(xpath ="//button[text()=' Save ']")
     private static WebElement saveButtonAddForm;
 
     @FindBy(xpath = "//*[text()='First Mid']")
@@ -146,7 +148,7 @@ public class AdminPage {
             jobUpLoadFileField.sendKeys(jobTittleParameterObj.getFileName());
 
             jobAddNoteField.sendKeys(jobTittleParameterObj.getNote());
-            WebElement jobSaveButton = driver.findElement(By.xpath("//form/div[5]/button[2]"));
+            //WebElement jobSaveButton = driver.findElement(By.xpath("//form/div[5]/button[2]"));
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(2)).
                     pollingEvery(Duration.ofMillis(300));
             wait.until(d -> {
@@ -187,9 +189,6 @@ public class AdminPage {
             }
 
             employeeNameField.sendKeys(jobEmployeeParametersObj.getEmployeeNameJob());
-
-            startTime = System.currentTimeMillis();
-            while (System.currentTimeMillis() - startTime < 2*1000) {}
 
             new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(5))

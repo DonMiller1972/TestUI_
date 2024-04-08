@@ -9,19 +9,19 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">YourTestSuite</th></tr>
-<tr><td><a href="#t0">YourTest</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">78 544</td><td></td><td></td></tr>
+<tr><td><a href="#t0">YourTest</a></td><td class="num">1</td><td class="num attn">2</td><td class="num">0</td><td class="num attn">1</td><td class="num">33 337</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">YourTestSuite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">YourTest &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">finalTestNG</td><td><a href="#m0">addAdminJobTitle</a></td><td rowspan="1">1712299392256</td><td rowspan="1">19500</td></tr><tr><th colspan="4">YourTest &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">finalTestNG</td><td><a href="#m1">addEmployee</a></td><td rowspan="1">1712299411835</td><td rowspan="1">20288</td></tr><tr class="passedeven"><td><a href="#m2">addJobEmployee</a></td><td rowspan="1">1712299432123</td><td rowspan="1">27176</td></tr><tr class="passedeven"><td><a href="#m3">loginToPage</a></td><td rowspan="1">1712299389931</td><td rowspan="1">2204</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">YourTestSuite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">YourTest &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">TestNgUiFinal</td><td><a href="#m0">testAddAdminJbTitle</a></td><td rowspan="1">1712602086802</td><td rowspan="1">15558</td></tr><tr><th colspan="4">YourTest &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="2">TestNgUiFinal</td><td><a href="#m1">testAddEmployee</a></td><td rowspan="1">1712602102413</td><td rowspan="1">0</td></tr><tr class="skippedeven"><td><a href="#m2">testAddJobEmploye</a></td><td rowspan="1">1712602102425</td><td rowspan="1">0</td></tr><tr><th colspan="4">YourTest &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">TestNgUiFinal</td><td><a href="#m3">testLoginToPage</a></td><td rowspan="1">1712602084677</td><td rowspan="1">1988</td></tr></tbody>
 </table>
-<h2>YourTest</h2><h3 id="m0">finalTestNG#addAdminJobTitle</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.InvalidArgumentException: invalid argument: 
+<h2>YourTest</h2><h3 id="m0">TestNgUiFinal#testAddAdminJbTitle</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[text()=&apos;Job &apos;]&quot;}
   (Session info: chrome=123.0.6312.106)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.0.1&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4c85124ba026b3efbbd558afb7393c4e, sendKeysToElement {id=f.3A7626F9E3F8AA74D7FB02CC0660CB5C.d.363C1E821B902490810B8DA1368D9D9E.e.99, value=[Ljava.lang.CharSequence;@1dd74143}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.106, chrome: {chromedriverVersion: 123.0.6312.86 (9b72c47a0536..., userDataDir: C:\Users\DonK\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64927}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64927/devtoo..., se:cdpVersion: 123.0.6312.106, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (4c85124ba026b3efbbd558afb7393c4e)] -&gt; xpath: //div[3]/div/div[2]/input]
-Session ID: 4c85124ba026b3efbbd558afb7393c4e
+Command: [5be62893d002b04d475e7a1df4f96409, findElement {using=xpath, value=//span[text()=&apos;Job &apos;]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 123.0.6312.106, chrome: {chromedriverVersion: 123.0.6312.105 (399174dbe6e..., userDataDir: C:\Users\DonK\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56597}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56597/devtoo..., se:cdpVersion: 123.0.6312.106, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5be62893d002b04d475e7a1df4f96409
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
@@ -29,13 +29,25 @@ Session ID: 4c85124ba026b3efbbd558afb7393c4e
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:111)
-	at finalTestNG.addAdminJobTitle(finalTestNG.java:89)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at com.sun.proxy.$Proxy21.click(Unknown Source)
+	at pages.AdminPage.addJobTittle(AdminPage.java:132)
+	at TestNgUiFinal.testAddAdminJbTitle(TestNgUiFinal.java:88)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
 ... Removed 35 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">finalTestNG#addEmployee</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">finalTestNG#addJobEmployee</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">finalTestNG#loginToPage</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">TestNgUiFinal#testAddEmployee</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.Throwable: Method TestNgUiFinal.testAddEmployee() on instance TestNgUiFinal@31ff43be depends on not successfully finished methods 
+[TestNgUiFinal.testAddAdminJbTitle() on instance TestNgUiFinal@31ff43be]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
+... Removed 22 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">TestNgUiFinal#testAddJobEmploye</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.Throwable: Method TestNgUiFinal.testAddJobEmploye() on instance TestNgUiFinal@31ff43be depends on not successfully finished methods 
+[TestNgUiFinal.testAddEmployee() on instance TestNgUiFinal@31ff43be]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
+... Removed 22 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">TestNgUiFinal#testLoginToPage</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

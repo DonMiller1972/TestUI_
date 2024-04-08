@@ -16,7 +16,7 @@ import java.time.Duration;
 import pages.*;
 
 
-public class finalTestNG {
+public class TestNgUiFinal {
 
     private static WebDriver driver;
     private static String URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
@@ -177,7 +177,7 @@ public class finalTestNG {
         Assert.assertEquals(status,statusJobB.getText(), "\"Record not present\"");
 
         new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(15))
+                .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(2000))
                 .until(d -> {
                     driver.findElement(By.xpath("//div[text() ='Abujabar']")).isEnabled();
