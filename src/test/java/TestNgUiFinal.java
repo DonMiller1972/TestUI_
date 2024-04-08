@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.ui.FluentWait;
@@ -24,12 +27,9 @@ public class finalTestNG {
     private static String description = "Don't worry, it so easy";
     private static String note = "it's a terrible job but you'll get experience and maybe money ";
     private static String fileName = Paths.get("./book.pdf").toFile().getAbsolutePath();
-    private static String xputTittle = "//*[text()="+"'New Super Account Assistent'"+"]";
+    private static String xputTittle = "//*[text()="+"'" + tittle +"'"+"]";
 
-    private static String xputDescription =  "//div[text() ='New Super Account Assistent']"+"/../../div[3]/div/span";
-
-
-    private static String xputUserName = "//*[text()='First Mid']";
+    private static String xputDescription =  "//div[text() ="+"'" + tittle +"'"+"]"+"/../../div[3]/div/span";
 
     private static String firstName  = "First";
 
@@ -39,11 +39,14 @@ public class finalTestNG {
 
     private static String employeeId = "0913";
 
-    private static String xputNameEmployee = "//*[text()='Abujabar']";
+    private static String fistMidl = firstName + " " + middleName;
+    private static String xputUserName = "//*[text()="+"'" + fistMidl + "'"+"]";
 
     private static String userName  = "Abujabar";
-    private static String userRole = "Admin";
-    private static String employeeNameJob = "First Laster";
+    private static String xputNameEmployee = "//*[text()="+"'" + userName + "'"+"]";
+
+   private static String userRole = "Admin";
+    private static String employeeNameJob = firstName + " " + lastName;
     private static String status = "Enabled";
     private static String paswrd = "123456789Qz";
 
@@ -59,7 +62,11 @@ public class finalTestNG {
 
 
     @Test
-    static  void loginToPage() {
+    @Description("This is login test")
+    @Story("Login")
+    @Feature("Login to account")
+
+    public void testLoginToPage() {
         SignInPage signInPage = new SignInPage(driver);
         SignInPageParametersObg signInPageParametersObg = new SignInPageParametersObg();
         signInPageParametersObg.setUserLogin(login).setUserPassword(password);
@@ -69,9 +76,11 @@ public class finalTestNG {
         Assert.assertEquals("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index", currentURL, "It's a wrong Webpage");
     }
 
-    @Test(dependsOnMethods = "loginToPage")
-
-    static void addAdminJbTitle() {
+    @Test(dependsOnMethods = "testLoginToPage")
+    @Description("This is a New Job's create test")
+    @Story("Admin")
+    @Feature("Create new job's tittle")
+    public void testAddAdminJbTitle() {
         AdminPage adminPage = new AdminPage(driver);
         JobTittleParameterObj jobTittleParameterObj = new JobTittleParameterObj();
         jobTittleParameterObj.setTitle(tittle).setDescription(description).setFileName(fileName)
@@ -97,9 +106,11 @@ public class finalTestNG {
 
     }
 
-    @Test(dependsOnMethods = "addAdminJbTitle")
-
-    public void addEmployee(){
+    @Test(dependsOnMethods = "testAddAdminJbTitle")
+    @Description("This is the Employee's create test")
+    @Story("PIM")
+    @Feature("Create new Employee")
+    public void testAddEmployee(){
         long  startTime;
          PimPage pimPage = new PimPage(driver);
          EmployeeParametersObj employeeParametersObj = new EmployeeParametersObj();
@@ -123,26 +134,28 @@ public class finalTestNG {
                 .findElement(By.xpath("//div[1]/div[1]/header/div[2]/nav/ul/li[2]"));
         employeeListButton.click();
 
-        WebElement id = driver.findElement(By.xpath("//div[text() ='0913']"));
-        WebElement firstAndMiddleName = driver.findElement(By.xpath("//div[text() ='0913']/../../div[3]/div"));
+        WebElement id = driver.findElement(By.xpath("//div[text() ="+ "'" + employeeId +"'"+"]"));
+        WebElement firstAndMiddleName = driver.findElement(By.xpath("//div[text() ="+ "'" + employeeId +"'"+"]"+"/../../div[3]/div"));
         Assert.assertEquals(employeeId, id.getText(),"Not found");
-        String firstNameMiddleName = firstName + " " + middleName;
-        Assert.assertEquals(firstNameMiddleName, firstAndMiddleName.getText(),"Not found");
+        //String firstNameMiddleName = firstName + " " + middleName;
+        Assert.assertEquals(fistMidl, firstAndMiddleName.getText(),"Not found");
         new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(7))
                 .pollingEvery(Duration.ofMillis(300))
                 .until(d -> {
-                    driver.findElement(By.xpath("//div[text() ='0913']")).isEnabled();
+                    driver.findElement(By.xpath("//div[text() ="+ "'" + employeeId +"'"+"]")).isEnabled();
                     return true;
                 });
         Assert.assertEquals(employeeId, driver
-                .findElement(By.xpath("//div[text() ='0913']"))
+                .findElement(By.xpath("//div[text() ="+ "'" + employeeId +"'"+"]"))
                 .getText(), "Record not present");
     }
 
-    @Test(dependsOnMethods = "addEmployee")
-
-    public void addJobEmploye() {
+    @Test(dependsOnMethods = "testAddEmployee")
+    @Description("This is the User's create test")
+    @Story("Admin")
+    @Feature("Create new User for Employee")
+    public void testAddJobEmploye() {
         AdminPage adminPage = new AdminPage(driver);
         JobEmployeeParametersObj jobEmployeeParametersObj = new JobEmployeeParametersObj();
         jobEmployeeParametersObj.setXputNameEmployee(xputNameEmployee).setEmployeeNameJob(employeeNameJob)
@@ -150,7 +163,7 @@ public class finalTestNG {
 
         AdminPage.addJobEmployee(jobEmployeeParametersObj);
 
-        WebElement name = driver.findElement(By.xpath("//div[text() ='Abujabar']"));
+        WebElement name = driver.findElement(By.xpath("//div[text() ="+ "'" + userName +"'"+"]"));
         WebElement useRoleB = driver.findElement(By
                 .xpath("//div[text() ='Abujabar']/../../div[3]/div"));
         WebElement employeeNameB = driver.findElement(By
@@ -178,7 +191,7 @@ public class finalTestNG {
     }
 
     @AfterClass
-    public static void quitWebDriver(){
+    public void quitWebDriver(){
         if(driver!=null){
             driver.quit();
         }
