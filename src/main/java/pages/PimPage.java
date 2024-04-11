@@ -61,10 +61,10 @@ public class PimPage {
 
         pimButton.click();
 
-        List<WebElement> listOfElements = driver
+        List<WebElement> listOfElements1 = driver
                 .findElements(By.xpath(employeeParametersObj.getXputUserName()));
 
-        if (listOfElements.size() > 0) {
+        if (listOfElements1.size() > 0) {
             WebElement userElement = driver.findElement(By.xpath(employeeParametersObj.getXputUserName()));
             System.out.println("Employee Id :" + employeeParametersObj.getEmployeeId() + " is present. Skip ");
         } else {
@@ -72,8 +72,11 @@ public class PimPage {
             firstNameField.sendKeys(employeeParametersObj.getFirstName());
             middleNameField.sendKeys(employeeParametersObj.getMiddleName());
             lastNameField.sendKeys(employeeParametersObj.getLastName());
-            employeeIdField.sendKeys(Keys.CONTROL + "a");
-            employeeIdField.sendKeys(Keys.DELETE);
+            for(int i =0;i<5;i++){
+                employeeIdField.sendKeys(Keys.BACK_SPACE);
+            }
+            //employeeIdField.sendKeys(Keys.CONTROL + "a");
+            //employeeIdField.sendKeys(Keys.DELETE);
 
             employeeIdField.sendKeys(employeeParametersObj.getEmployeeId());
             Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(5)).
